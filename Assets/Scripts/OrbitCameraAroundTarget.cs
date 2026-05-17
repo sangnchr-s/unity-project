@@ -168,9 +168,6 @@ public sealed class OrbitCameraAroundTarget : MonoBehaviour
         if (SimulatorPracticePanel.IsTypingInPracticeInput)
             return;
 
-        if (PauseMenu.IsPaused)
-            return;
-
         if (_lecturePreset != null && _lecturePreset.IsMovingToPreset)
             return;
 

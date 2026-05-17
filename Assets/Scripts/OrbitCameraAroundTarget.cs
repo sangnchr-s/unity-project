@@ -168,6 +168,9 @@ public sealed class OrbitCameraAroundTarget : MonoBehaviour
         if (SimulatorPracticePanel.IsTypingInPracticeInput)
             return;
 
+        if (PauseMenu.IsPaused)
+            return;
+
         if (_lecturePreset != null && _lecturePreset.IsMovingToPreset)
             return;
 
@@ -484,9 +487,10 @@ public sealed class OrbitCameraAroundTarget : MonoBehaviour
 
         float mx = Input.GetAxisRaw("Mouse X");
         float my = Input.GetAxisRaw("Mouse Y");
+        float sens = GameSettings.MouseSensitivity;
 
-        _yaw += mx * rotationSpeed * Time.unscaledDeltaTime;
-        _pitch -= my * rotationSpeed * Time.unscaledDeltaTime;
+        _yaw += mx * rotationSpeed * sens * Time.unscaledDeltaTime;
+        _pitch -= my * rotationSpeed * sens * Time.unscaledDeltaTime;
     }
 
     void HandleZoom()

@@ -87,13 +87,11 @@ public class Movement : MonoBehaviour
     {
         if (zones != null && zones.Length > 0 && Input.GetKeyDown(KeyCode.Alpha2) && transform.position.z >= zones[0].z) //начало гранита
         {
-            print("event");
             OnPowerChanged?.Invoke(DrillTaskAction.OnPowerChanged1);
         }
 
         if (zones != null && zones.Length > 1 && Input.GetKeyDown(KeyCode.Alpha3) && transform.position.z >= zones[1].z) //начало диорита
         {
-            print("event 2");
             OnPowerChanged?.Invoke(DrillTaskAction.OnPowerChanged2);
         }
 

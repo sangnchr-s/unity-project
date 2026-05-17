@@ -11,7 +11,10 @@ public class Drill : MonoBehaviour
         if (DrillStateManager.instance.canDrill)
         {
             var configuredPower = DrillPracticeTelemetry.DrillPower;
-            var effectivePower = configuredPower > 0 ? configuredPower : power;
+            var basePower = configuredPower > 0 ? configuredPower : power;
+            var overheat = DrillOverheatSystem.Instance;
+            var multiplier = overheat != null ? overheat.EffectivePowerMultiplier : 1f;
+            var effectivePower = basePower * multiplier;
             terrain.Dig(transform.position, radius, effectivePower);
         }
     }

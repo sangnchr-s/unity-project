@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae33271b4f9049fe8ed879e00fe6042, type: 3}
+  m_Name: DrillCameraPresets
+  m_EditorClassIdentifier: 
+  presets:
+  - label: "\u0411\u0443\u0440\u043E\u0432\u0430\u044F \u0433\u043E\u043B\u043E\u0432\u0430"
+    position: {x: -8.005231, y: 0.8272164, z: -30.57092}
+    rotation: {x: 12.152077, y: 147.01036, z: 0.0000002183358}
+  - label: "\u041C\u0430\u043B\u044B\u0439 \u0431\u0443\u0440 L01"
+    position: {x: -6.3169193, y: 0.7410338, z: -31.376146}
+    rotation: {x: 10.604979, y: 238.43015, z: 0.000000434305}
+  - label: "\u041C\u0430\u043B\u044B\u0439 \u0431\u0443\u0440 L02"
+    position: {x: -6.3169193, y: 0.7410338, z: -31.376146}
+    rotation: {x: 10.604979, y: 238.43015, z: 0.000000434305}
+  - label: "\u041C\u0430\u043B\u044B\u0439 \u0431\u0443\u0440 R01"
+    position: {x: -8.236695, y: 0.8733558, z: -31.040113}
+    rotation: {x: 7.0253468, y: 125.329384, z: -0.00000021505802}
+  - label: "\u041C\u0430\u043B\u044B\u0439 \u0431\u0443\u0440 R02"
+    position: {x: -8.236695, y: 0.8733558, z: -31.040113}
+    rotation: {x: 7.0253468, y: 125.329384, z: -0.00000021505802}
+  - label: "\u041F\u0440\u043E\u0436\u0435\u043A\u0442\u043E\u0440 \u043B\u0435\u0432\u044B\u0439"
+    position: {x: -7.8227396, y: 0.8782806, z: -33.357224}
+    rotation: {x: 7.0686316, y: 38.66605, z: 0}
+  - label: "\u041F\u0440\u043E\u0436\u0435\u043A\u0442\u043E\u0440 \u043F\u0440\u0430\u0432\u044B\u0439"
+    position: {x: -6.5742283, y: 0.8389137, z: -33.669876}
+    rotation: {x: 11.409239, y: 354.55408, z: 0}
+  - label: "\u041A\u043E\u0440\u043F\u0443\u0441 \u0438 \u0445\u043E\u0434\u043E\u0432\u0430\u044F"
+    position: {x: -7.1649866, y: 1.4060631, z: -34.0035}
+    rotation: {x: 13.7877655, y: 358.52435, z: -0.000000027472025}

@@ -1,8 +1,13 @@
 using UnityEngine;
 
 /// <summary>
-/// Динамика звука бурения: чем выше тепло бура, тем выше питч и громкость loop‑звука
-/// бурения. Игрок слышит «напряжение» в звуке вместо HUD-индикатора температуры.
+/// Динамика звука бурения:
+/// <list type="bullet">
+///   <item>Чем выше тепло бура, тем выше питч и громкость loop‑звука бурения.</item>
+///   <item>Чем сильнее износ долота, тем ниже питч (бур «надрывается»).
+///         Сломанное долото даёт сильное падение питча.</item>
+/// </list>
+/// Игрок слышит «напряжение» в звуке вместо HUD-индикатора температуры/износа.
 ///
 /// Источник звука берётся у <see cref="DrillStateManager"/> по дочернему имени
 /// «DrillDrilling_Audio» — без правок DrillStateManager.
@@ -17,6 +22,12 @@ public sealed class DrillAudioDynamics : MonoBehaviour
     [Tooltip("Питч звука бурения в критическом перегреве.")]
     [SerializeField] float pitchHot = 1.28f;
 
+    [Tooltip("Падение питча при полном износе долота (новое долото = 0).")]
+    [SerializeField] float pitchDropAtMaxWear = 0.18f;
+
+    [Tooltip("Доп. падение питча, когда долото сломано.")]
+    [SerializeField] float pitchDropWhenBroken = 0.15f;
+
     [Tooltip("Множитель громкости при холодном буре.")]
     [SerializeField] float volumeMultiplierCold = 1.0f;
 
@@ -30,6 +41,7 @@ public sealed class DrillAudioDynamics : MonoBehaviour
     float _baseVolume;
     bool _baseVolumeCaptured;
     float _smoothedHeat;
+    float _smoothedWear;
 
     void Update()
     {
@@ -45,9 +57,18 @@ public sealed class DrillAudioDynamics : MonoBehaviour
         }
 
         float targetHeat = DrillOverheatSystem.Instance != null ? DrillOverheatSystem.Instance.Heat : 0f;
+        float targetWear = DrillBitSystem.Instance != null ? DrillBitSystem.Instance.Wear : 0f;
+        bool broken = DrillBitSystem.Instance != null && DrillBitSystem.Instance.IsBroken;
+
         _smoothedHeat = Mathf.MoveTowards(_smoothedHeat, targetHeat, smoothingRate * Time.unscaledDeltaTime);
+        _smoothedWear = Mathf.MoveTowards(_smoothedWear, targetWear, smoothingRate * Time.unscaledDeltaTime);
 
         float pitch = Mathf.Lerp(pitchCold, pitchHot, _smoothedHeat);
+        pitch -= pitchDropAtMaxWear * _smoothedWear;
+        if (broken)
+            pitch -= pitchDropWhenBroken;
+        pitch = Mathf.Clamp(pitch, 0.4f, 2f);
+
         float volumeMul = Mathf.Lerp(volumeMultiplierCold, volumeMultiplierHot, _smoothedHeat);
 
         _source.pitch = pitch;

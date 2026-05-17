@@ -8,6 +8,7 @@ public class FlyCamera : MonoBehaviour
     [SerializeField] private float verticalSpeed = 4f;
 
     [Header("Look")]
+    [Tooltip("Базовая чувствительность мыши. Множитель из GameSettings.MouseSensitivity применяется поверх.")]
     [SerializeField] private float mouseSensitivity = 2f;
     [SerializeField] private float pitchMin = -85f;
     [SerializeField] private float pitchMax = 85f;
@@ -33,8 +34,8 @@ public class FlyCamera : MonoBehaviour
         if (SimulatorPracticePanel.IsTypingInPracticeInput)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            LockCursor(false);
+        if (PauseMenu.IsPaused)
+            return;
 
         if (Input.GetMouseButtonDown(0))
             LockCursor(true);
@@ -47,8 +48,9 @@ public class FlyCamera : MonoBehaviour
 
     private void Look()
     {
-        _yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
-        _pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float sens = mouseSensitivity * GameSettings.MouseSensitivity;
+        _yaw += Input.GetAxis("Mouse X") * sens;
+        _pitch -= Input.GetAxis("Mouse Y") * sens;
         _pitch = Mathf.Clamp(_pitch, pitchMin, pitchMax);
 
         transform.rotation = Quaternion.Euler(_pitch, _yaw, 0f);

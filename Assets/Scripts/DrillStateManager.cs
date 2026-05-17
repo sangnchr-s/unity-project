@@ -11,37 +11,9 @@ public class DrillStateManager : MonoBehaviour
 {
     const string DefaultMovementClipPath = "Assets/sound/15780_1460487610.mp3";
     const string DefaultDrillingClipPath = "Assets/sound/burilnaya-ustanovka--glubokiy-gul.mp3";
-    private bool _canDrill = false;
-    private bool _isDrilling = false;
-    public bool canDrill
-    {
-        private set
-        {
-            _canDrill = value;
-        }
 
-        get
-        {
-
-            return drillHeadTurn.turned && movement.moving;
-
-        }
-    }
-
-    public bool isDrilling
-    {
-        private set
-        {
-            _isDrilling = value;
-        }
-
-        get
-        {
-
-            return drillHeadTurn.turned && movement.moving;
-
-        }
-    }
+    public bool canDrill => drillHeadTurn != null && movement != null && drillHeadTurn.turned && movement.moving;
+    public bool isDrilling => drillHeadTurn != null && movement != null && drillHeadTurn.turned && movement.moving;
     public Movement movement;
     public DrillHeadTurn drillHeadTurn;
     public VoxelTerrain vt;

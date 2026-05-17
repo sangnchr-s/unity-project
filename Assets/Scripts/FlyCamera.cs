@@ -34,8 +34,8 @@ public class FlyCamera : MonoBehaviour
         if (SimulatorPracticePanel.IsTypingInPracticeInput)
             return;
 
-        if (PauseMenu.IsPaused)
-            return;
+        if (Input.GetKeyDown(KeyCode.Escape))
+            LockCursor(false);
 
         if (Input.GetMouseButtonDown(0))
             LockCursor(true);

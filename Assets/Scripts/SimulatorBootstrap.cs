@@ -12,9 +12,11 @@ static class SimulatorBootstrap
     static void SpawnRuntimeSystems()
     {
         EnsureSingleton<DrillOverheatSystem>("DrillOverheatSystem");
+        EnsureSingleton<DrillBitSystem>("DrillBitSystem");
         EnsureSingleton<DrillAudioDynamics>("DrillAudioDynamics");
         EnsureSingleton<DepthMarkerTrail>("DepthMarkerTrail");
         EnsureSingleton<DrillingCameraShake>("DrillingCameraShake");
+        EnsureSingleton<SonarSystem>("SonarSystem");
     }
 
     static void EnsureSingleton<T>(string objectName) where T : MonoBehaviour
